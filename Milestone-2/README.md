@@ -19,7 +19,7 @@ The data used here can be downloaded from (GDrive)[https://drive.google.com/file
 **Data**
   * subfolder **Images** contains subfolder for each dataset
     * **NWPU** contains lake images from RESISC45 data
-      * **S2_Cloudless** contains 40 sentinel-2 cloudless images provided in this course
+    * **S2_Cloudless** contains 40 sentinel-2 cloudless images provided in this course
   * subfolder **Labels** contains json files with label information and polygons co-oridinates for water.
       * **NWPU** contains labels for RESISC45 data
       * **S2_Cloudless** contains json files with labels for sentinel-2 cloudless images.
