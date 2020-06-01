@@ -8,3 +8,12 @@ Project code for assignments associated with the live manning project "Monitorin
 3. The Geotiff file is loaded back in and various transformations and manipulations are applied and visualized in the notebook.
 4. Finally, a rectangle is cropped from the original Geotiff file and saved as a png on disk.
 5. The jupyter notebook is also exported as `Milestone-1.html` which can be downloaded to view the output produced on my computer setup.
+
+## Deliverable for Milestone-2
+
+Creates training and testing data set for identifying water region in satellite images. For the purpose of this milestone `NWPU-RESISC45` dataset and the dataset provided by the course is combined. Masked image label is created for each image in the combined dataset.
+
+1. Polygons for the water region of each image is read.
+2. Image mask is created from the water region and saved to disk.
+3. training and testing split is created using scikit's `train_test_split`.
+4. training set is augmented with real time transformation to help avoid over-fitting.
