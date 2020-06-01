@@ -16,7 +16,6 @@ The directory containing different data sources.
 
 The data used here can be downloaded from (GDrive)[https://drive.google.com/file/d/1V4V4dFvb0V22d4dTLo3U6e4EjVrtnSoV/view?usp=sharing]
 
-**Data**
   * subfolder **Images** contains subfolder for each dataset
     * **NWPU** contains lake images from RESISC45 data
     * **S2_Cloudless** contains 40 sentinel-2 cloudless images provided in this course
