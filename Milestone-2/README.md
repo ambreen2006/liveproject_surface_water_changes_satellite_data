@@ -8,7 +8,7 @@ Creates training and testing data set for identifying water region in satellite 
 ### Files and Directories
 
 #### `Milestone-2.ipynb`
-The notebook containing workflow to consolidate different datasources, create image labels, and write to disk.
+The notebook containing workflow to consolidate different data sources, create image labels, and write the masks to disk.
 
 #### Data
 
@@ -29,5 +29,6 @@ The data used here can be downloaded from (GDrive)[https://drive.google.com/file
 
 1. Polygons for the water region of each image is read.
 2. Image mask is created from the water region and saved to disk.
-3. training and testing split is created using scikit's `train_test_split`.
-4. training set is augmented with real time transformation to help avoid over-fitting.
+3. Training and testing split is created using scikit's `train_test_split`.
+4. Training set is augmented with real time transformation to help avoid over-fitting.
+5. The input images and masks are then organized into a hierarchy to be used in next milestone and archived as `Satellite_Image_Data.tar.gz`
