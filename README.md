@@ -1,6 +1,88 @@
 # liveproject_surface_water_changes_satellite_data
 Project code for assignments associated with the live manning project "Monitoring Changes in Surface Water Using Satellite Image Data"
 
+## Milestone-4
+
+Two instances of UNet models are created, one trained on NWPU images and the other on Sentinel-2 images. Both are further tested on Sentinel-2 test images.
+
+* Data Pre-processing
+
+  The data created in the previous milestones are further organized using the script in Scripts/data_organizer_script.py
+
+  The hierarchy is as follows:
+
+```
+    NWPU
+        \
+         Test
+         |    \
+         |     Images
+         |     |     \
+         |     |      data -> *.img of actual lakes
+         |     Masks
+         |          \
+         |           data -> mask_*.img mask images
+         |
+         Train
+         |    \
+         |     Images
+         |     |     \
+         |     |      data -> *.img of actual lakes
+         |     Masks
+         |          \
+         |           data -> mask_*.img mask images
+         |
+    S2_Cloudless
+        \
+         Test
+         |    \
+         |     Images
+         |     |     \
+         |     |      data -> *.img of actual lakes
+         |     Masks
+         |          \
+         |           data -> mask_*.img mask images
+         |
+         Train
+         |    \
+         |     Images
+         |     |     \
+         |     |      data -> *.img of actual lakes
+         |     Masks
+         |          \
+         |           data -> mask_*.img mask images
+         |
+
+```
+
+* Data Augmentation
+
+  Data is augmented using ImageDataGenerator
+
+* UNet Model
+
+  Model takes 128*128 size images and output greyscale segmentation mask. The starting filter size for the model is 64
+
+* Metrics
+
+  binary_crossentropy is used for loss and IoU is computed as additional metric.
+
+* Optimzation
+
+  Adam is used with default settings.
+
+* Training Outcome
+
+  The val_loss improved to 0.188 and mean IoU to 0.9266
+
+  Following result is for NWPU images from NWPU test set
+![NWPU test](https://github.com/ambreen2006/liveproject_surface_water_changes_satellite_data/blob/master/Resources/nwpu_test.png)
+
+  Following result is for S2 images test on the unet model trained on NWPU Images
+
+  ![S2 test](https://github.com/ambreen2006/liveproject_surface_water_changes_satellite_data/blob/master/Resources/s2_test_on_nwpu_trained.png)
+
+
 ## Deliverable for Milestone-3
 
 Workflow showing U-Net and FCN setup for training over dataset created in the previous milestone.
