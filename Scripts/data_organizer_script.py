@@ -24,7 +24,10 @@ class DataOrganizer:
         with tarfile.open(output_file, 'w:gz') as t:
             t.add(dir)
 
-    def Module4(self, input_dir, output_dir, dataset):
+    def create_split_data(self, input_dir, output_dir):
+        self.seperate_and_create_split_data(input_dir, output_dir, [''])
+            
+    def seperate_and_create_split_data(self, input_dir, output_dir, dataset):
         input_images = input_dir+'/Images/data/'
         input_masks = input_dir +'/Masks/data/'
         for dset in dataset:
@@ -53,14 +56,22 @@ class DataOrganizer:
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--input', required = True,
                     help = 'Input directory where consolidated data is present')
-parser.add_argument('-m', '--module', required = True, type = int,
-                    help = 'Module # for which the data needs organized')
-parser.add_argument('-s', '--dataset', required = True, nargs='+')
+parser.add_argument('-o', '--output', required = True,
+                    help = 'Output directory where the organized dataset needs to be stored')
+parser.add_argument('-m', '--method', required = True,
+                    help = 'Method by which to organize the data')
+parser.add_argument('-s', '--dataset', nargs='+')
 
 args = parser.parse_args()
 
 organizer = DataOrganizer()
 
-if args.module == 4:
-    print("# Creating data for Module 4")
-    organizer.Module4(args.input, 'Data_Module_4', args.dataset)
+if args.method == "seperate":
+    if not args.dataset:
+        print("Dataset prefix names must be present")
+    else:
+        print("# Creating dataset by seperating based on prefix")
+        organizer.seperate_and_create_split_data(args.input, args.output, args.dataset)
+elif args.method == "mixed":
+    print("# Creating dataset")
+    organizer.create_split_data(args.input, args.output)
