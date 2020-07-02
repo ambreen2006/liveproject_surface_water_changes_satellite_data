@@ -24,20 +24,41 @@ class DataOrganizer:
         with tarfile.open(output_file, 'w:gz') as t:
             t.add(dir)
 
+    def create_directories(self, dset_path):
+        images_train = dset_path +'/Train/Images/data/'
+        masks_train = dset_path + '/Train/Masks/data/'
+        images_test = dset_path + '/Test/Images/data/'
+        masks_test = dset_path + '/Test/Masks/data/'
+        self.create_paths([images_train, masks_train, images_test, masks_test])
+        return images_train, masks_train, images_test, masks_test
+
     def create_split_data(self, input_dir, output_dir):
-        self.seperate_and_create_split_data(input_dir, output_dir, [''])
-            
+        images_train, masks_train, images_test, masks_test = self.create_directories(output_dir)
+        input_images = input_dir+'/Images/data/'
+        input_masks = input_dir +'/Masks/data/'
+        images = input_dir + '/Images/data/*.*'
+        images_list = [os.path.basename(file) for file in glob.glob(images)]
+        X_train, X_test = train_test_split(images_list)
+        print(f'len of X_train {len(X_train)}')
+        print(f'len of X_test {len(X_test)}')
+        Y_train = ['mask_'+file for file in X_train]
+        Y_test = ['mask_'+file for file in X_test]
+        print(f'len of Y_train {len(Y_train)}')
+        print(f'len of Y_test {len(Y_test)}')
+        self.copy_files(input_images, X_train, images_train)
+        self.copy_files(input_masks, Y_train, masks_train)
+        self.copy_files(input_images, X_test, images_test)
+        self.copy_files(input_masks, Y_test, masks_test)
+        self.archive(output_dir)
+
+        #self.seperate_and_create_split_data(input_dir, output_dir, [''])
+
     def seperate_and_create_split_data(self, input_dir, output_dir, dataset):
         input_images = input_dir+'/Images/data/'
         input_masks = input_dir +'/Masks/data/'
         for dset in dataset:
             dset_path = output_dir + '/' + dset
-            images_train = dset_path +'/Train/Images/data/'
-            masks_train = dset_path + '/Train/Masks/data/'
-            images_test = dset_path + '/Test/Images/data/'
-            masks_test = dset_path + '/Test/Masks/data/'
-
-            self.create_paths([images_train, masks_train, images_test, masks_test])
+            images_train, masks_train, images_test, masks_test = self.create_directories(dset_path)
 
             images_for_set = input_dir + '/Images/data/'+dset+"*.*"
             images_list = [os.path.basename(file) for file in glob.glob(images_for_set)]
