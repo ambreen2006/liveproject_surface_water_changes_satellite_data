@@ -1,7 +1,7 @@
 # liveproject_surface_water_changes_satellite_data
 Project code for assignments associated with the live manning project "Monitoring Changes in Surface Water Using Satellite Image Data"
 
-## Milestone-6
+## Deliverable for Milestone-6
 
 The report in this milestone aims to provide an automation solution to the problem of identifying water regions in satellite images.
 
@@ -9,7 +9,7 @@ Satellite images from programs such as Sentinel-2 can provide time series images
 
 The class WaterRegion is provided and examples are shown here that makes use of deep learning network trainined over satellite images to segment the region of interest.
 
-## Milestone-5
+## Deliverable for Milestone-5
 
 Following optimization techniques were applied to the network:
 
@@ -19,7 +19,7 @@ Following optimization techniques were applied to the network:
   * Addition of residual connections
   * Ensembling different models to make the prediction
 
-## Milestone-4
+## Deliverable for Milestone-4
 
 Two instances of UNet models are created, one trained on NWPU images and the other on Sentinel-2 images. Both are further tested on Sentinel-2 test images.
 
